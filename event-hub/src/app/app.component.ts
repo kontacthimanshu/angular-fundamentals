@@ -4,9 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: 
   `
-    <div class="container">
+      <nav-bar></nav-bar>
       <events-list></events-list>
-    </div>
   `
 })
 export class AppComponent {
