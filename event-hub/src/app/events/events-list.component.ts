@@ -14,11 +14,7 @@ export class EventsListComponent
           time: '10:00 am',
           price: 599.99,
           imageUrl: '/assets/images/angularconnect-shield.png',
-          location: {
-            address: '1057 DT',
-            city: 'London',
-            country: 'England'
-          },
+          onlineUrl:'https://bit.ly/angEngland#$@$',
           sessions: [
             {
               id: 1,
