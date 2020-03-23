@@ -4,10 +4,10 @@
             <a class="nav-link" href="#">AngularReady</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">All Events</a>
+            <a [routerLink]="['/events']" class="nav-link" href="#">All Events</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Create Events</a>
+            <a class="nav-link" [routerLink]="['/events/new']" href="#">Create Events</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
