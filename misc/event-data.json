@@ -1,12 +1,4 @@
-import { Component } from '@angular/core';
-
-@Component({
-    selector: 'events-list',
-    templateUrl: './events-list.component.html'
-})
-export class EventsListComponent
-{
-    events = [
+events = [
         {
           id: 1,
           name: 'Angular Connect',
@@ -315,5 +307,4 @@ export class EventsListComponent
             }
           ]
         }
-      ];
-}
+      ]
