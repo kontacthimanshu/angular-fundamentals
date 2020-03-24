@@ -4,10 +4,10 @@
             <a class="nav-link" href="#">AngularReady</a>
         </li>
         <li class="nav-item">
-            <a [routerLink]="['/events']" class="nav-link" href="#">All Events</a>
+            <a [routerLink]="['/events']" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">All Events</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/events/new']" href="#">Create Events</a>
+            <a class="nav-link" [routerLink]="['/events/new']" routerLinkActive="active">Create Events</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -28,7 +28,7 @@
                 <button class="btn btn-success" type="submit">Search</button>
             </form>
             <li class="nav-item float-right">
-                <a class="nav-link" href="#">Welcome John</a>
+                <a class="nav-link" [routerLink]="['user/profile']">Welcome Himanshu</a>
             </li>
         </ul>
     </div>
