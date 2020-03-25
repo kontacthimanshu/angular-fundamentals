@@ -19,6 +19,13 @@ export class EventService
     {
       return events.find(event=>event.id === id);  
     }
+
+    saveEvent(event:IEvent)
+    {
+      event.id = 999;
+      event.sessions = [];
+      events.push(event);
+    }
 }
 
 const events : IEvent[] = [
