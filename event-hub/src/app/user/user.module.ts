@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { LoginComponent } from './login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const userRoutes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'login', component: LoginComponent}
@@ -13,7 +13,8 @@ const userRoutes: Routes = [
     imports:[
         CommonModule,
         RouterModule.forChild(userRoutes),
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations:[
         ProfileComponent,
