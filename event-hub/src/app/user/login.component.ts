@@ -10,6 +10,7 @@ export class LoginComponent
 {
     userName:string;
     password:string;
+    mouseOverLogin:boolean;
 
     constructor(private authService:AuthService, private router:Router)
     {
