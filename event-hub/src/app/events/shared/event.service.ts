@@ -26,6 +26,12 @@ export class EventService
       event.sessions = [];
       events.push(event);
     }
+
+    updateEvent(event:IEvent)
+    {
+      let index = events.findIndex(ev=>ev.id = event.id);
+      events[index] = event;  
+    }
 }
 
 const events : IEvent[] = [

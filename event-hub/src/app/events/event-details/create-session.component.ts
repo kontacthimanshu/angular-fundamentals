@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ISession } from '../shared/event.model'
+
 @Component({
     selector:'create-session',
     templateUrl:'./create-session.component.html',
@@ -15,6 +16,7 @@ import { ISession } from '../shared/event.model'
 export class CreateSessionComponent implements OnInit
 {
     sessionForm:FormGroup;
+    @Output() saveNewSession = new EventEmitter();
 
     ngOnInit()
     {
@@ -45,7 +47,7 @@ export class CreateSessionComponent implements OnInit
             voters:[]
         };
 
-        console.log(newSession);
+        this.saveNewSession.emit(newSession);
     }
 
     private restrictedWords(formControl:FormControl) : {[key: string]: any}
