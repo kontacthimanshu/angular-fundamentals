@@ -1,4 +1,4 @@
-<div class="col-md-12">
+ <div class="col-md-12">
     <h3>Create Session</h3>
   </div>
   <div class="col-md-6">
@@ -37,6 +37,7 @@
       <div class="form-group" [ngClass]="{'error': sessionForm.controls.abstract.invalid && sessionForm.controls.abstract.touched}">
         <label for="abstract">Abstract:</label>
         <em *ngIf="sessionForm.controls.abstract.invalid && sessionForm.controls.abstract.touched && sessionForm.controls.abstract.errors.required">Required</em>
+        <em *ngIf="sessionForm.controls.abstract.invalid && sessionForm.controls.abstract.touched && sessionForm.controls.abstract.errors.restrictedWords">Found restricted word</em>
         <textarea id="abstract" formControlName="abstract" name="abstract" rows=3 class="form-control" placeholder="abstract..."></textarea>
       </div>
       <button type="submit" [disabled]="sessionForm.invalid" class="btn btn-primary">Save</button>
