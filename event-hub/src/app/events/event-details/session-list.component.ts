@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ISession } from '../shared/event.model';
+import { sequenceEqual } from 'rxjs/operators';
 
 @Component({
     selector:'session-list',
@@ -11,12 +12,14 @@ export class SessionListComponent implements OnChanges
     @Input() sessions:ISession[];
     @Input() filterBy:string;
     visibleSessions:ISession[] = [];
+    @Input() sortBy:string;
 
     ngOnChanges()
     {
         if(this.sessions)
         {
             this.filterSessions(this.filterBy);
+            this.sortBy === 'title' ? this.visibleSessions.sort(sortByTitleAsc) : this.visibleSessions.sort(sortByVotesDesc);
         }
     }
 
@@ -34,4 +37,19 @@ export class SessionListComponent implements OnChanges
                 });
         }
     }
+}
+
+function sortByTitleAsc(s1:ISession,s2:ISession)
+{
+    if(s1.name > s2.name)
+        return 1;
+    else if (s1.name === s2.name)
+        return 0;
+    else
+        return -1;
+}
+
+function sortByVotesDesc(s1:ISession,s2:ISession)
+{
+    return s2.voters.length - s1.voters.length;
 }
