@@ -17,6 +17,7 @@ export class CreateSessionComponent implements OnInit
 {
     sessionForm:FormGroup;
     @Output() saveNewSession = new EventEmitter();
+    @Output() cancelNewSession = new EventEmitter();
 
     ngOnInit()
     {
@@ -48,6 +49,11 @@ export class CreateSessionComponent implements OnInit
         };
 
         this.saveNewSession.emit(newSession);
+    }
+
+    cancel()
+    {
+        this.cancelNewSession.emit('cancel');
     }
 
     private restrictedWords(formControl:FormControl) : {[key: string]: any}
