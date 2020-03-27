@@ -22,6 +22,8 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import { JQ_TOKEN } from './common/jquery.service';
 import { SimpleModalComponent } from './common/simple-modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { UpvoteComponent } from './events/event-details/upvote.component';
+import { VoterService } from './events/event-details/voter.service';
 
 declare let $:any;
 declare let toastr:any;
@@ -40,7 +42,8 @@ declare let toastr:any;
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ declare let toastr:any;
               {
                 provide: 'canDeactivateCreateEvent',
                 useValue: checkDirtyState
-              }
+              },
+              VoterService
               ],
   bootstrap: [AppComponent]
 })
