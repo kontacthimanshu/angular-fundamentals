@@ -24,6 +24,7 @@ import { SimpleModalComponent } from './common/simple-modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote.component';
 import { VoterService } from './events/event-details/voter.service';
+import { LocationValidatorDirective } from './events/shared/location-validator.directive';
 
 declare let $:any;
 declare let toastr:any;
@@ -43,7 +44,8 @@ declare let toastr:any;
     DurationPipe,
     SimpleModalComponent,
     ModalTriggerDirective,
-    UpvoteComponent
+    UpvoteComponent,
+    LocationValidatorDirective
   ],
   imports: [
     BrowserModule,
