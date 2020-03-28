@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { IEvent, ISession } from './event.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class EventService
 {
-    getEvents() : Subject<IEvent[]>
+    constructor(private http:HttpClient)
     {
-        let subject = new Subject<IEvent[]>();
-        setTimeout(() => {
-          subject.next(events); 
-          subject.complete();
-        },100);
-        return subject;
+
     }
 
-    getEvent(id:number) : IEvent
+    getEvents() : Observable<IEvent[]>
     {
-      return events.find(event=>event.id === id);  
+        return this.http.get<IEvent[]>('/api/events').pipe(catchError(this.handleError<IEvent[]>('getEvents',[])));
     }
 
-    saveEvent(event:IEvent)
+    getEvent(id:number) : Observable<IEvent>
     {
-      event.id = 999;
-      event.sessions = [];
-      events.push(event);
+      return this.http.get<IEvent>('/api/events/' + id).pipe(catchError(this.handleError<IEvent>('getEvent')));
+    }
+
+    saveEvent(event:IEvent) : Observable<IEvent>
+    {
+      let options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+      return this.http.post<IEvent>('/api/events',event,options).pipe(catchError(this.handleError<IEvent>('saveEvent')));
     }
 
     updateEvent(event:IEvent)
     {
-      let index = events.findIndex(ev=>ev.id = event.id);
-      events[index] = event;  
+      let options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+      return this.http.put<IEvent>('/api/events',event,options).pipe(catchError(this.handleError<IEvent>('updateEvent')));  
     }
 
     searchSessions(searchTerm:string) : Observable<ISession[]>
@@ -56,6 +57,14 @@ export class EventService
       }, 100);
 
       return subject;
+    }
+
+    private handleError<T>(operation = 'operation', result?: T)
+    {
+        return (error: any): Observable<T> => {
+          console.error(error);
+          return of(result as T);
+        }
     }
 }
 

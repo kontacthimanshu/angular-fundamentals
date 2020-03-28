@@ -11,8 +11,8 @@ import { TOASTR_TOKEN } from './common/toastr.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
-import { EventRouteActivatorService } from './events/event-route-activator.service';
 import { EventsListResolverService } from './events/events-list-resolver.service';
+import { EventResolverService } from './events/event-details/event-resolver.service';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
@@ -25,6 +25,7 @@ import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote.component';
 import { VoterService } from './events/event-details/voter.service';
 import { LocationValidatorDirective } from './events/shared/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 declare let $:any;
 declare let toastr:any;
@@ -51,7 +52,8 @@ declare let toastr:any;
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
               EventService, 
@@ -63,8 +65,8 @@ declare let toastr:any;
                 provide: JQ_TOKEN,
                 useValue: $
               }, 
-              EventRouteActivatorService,
               EventsListResolverService,
+              EventResolverService,
               AuthService,
               {
                 provide: 'canDeactivateCreateEvent',
