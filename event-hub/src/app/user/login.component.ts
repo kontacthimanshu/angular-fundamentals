@@ -11,6 +11,7 @@ export class LoginComponent
     userName:string;
     password:string;
     mouseOverLogin:boolean;
+    loginInvalid:boolean = true;
 
     constructor(private authService:AuthService, private router:Router)
     {
@@ -19,11 +20,17 @@ export class LoginComponent
 
     login(formValue)
     {
-        this.authService.loginUser(formValue.userName,formValue.password);
-        if(this.authService.isAuthenticated())
-        {
-            this.router.navigate(['/events']);
-        }
+        this.authService.loginUser(formValue.userName,formValue.password).subscribe(resp =>{
+            
+            if(!<boolean>resp)
+            {
+                this.loginInvalid = <boolean>resp;
+            }
+            else
+            {
+                this.router.navigate(['/events']);
+            }
+        });
     }
 
     cancel()
